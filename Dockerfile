@@ -1,5 +1,5 @@
-# Usa una imagen base con Maven para construir el proyecto
-FROM maven:3.8.5-openjdk-17 AS build
+# Usa una imagen base con Maven y Java 21 para construir el proyecto
+FROM maven:3-eclipse-temurin-21 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Usa una imagen base de Java para la ejecución
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jre
 
 # Establece el directorio de trabajo
 WORKDIR /app
